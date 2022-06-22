@@ -283,6 +283,13 @@ class Ssbhesabfa_Setting
 			'default' => 'مشتریان فروشگاه آن‌لاین'
 		);
 
+        $fields[] = array(
+            'title' => __('Save Customer\'s group', 'ssbhesabfa'),
+            'desc' => __('Automatically save Customer\'s group in hesabfa', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_automatic_save_node_family',
+            'default' => 'yes',
+            'type' => 'checkbox'
+        );
 		$fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
 
 		return $fields;

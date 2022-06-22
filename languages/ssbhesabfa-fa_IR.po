@@ -239,6 +239,18 @@ msgstr "دسته‌بندی مشتریان"
 msgid "Enter a Customer's Group in Hesabfa"
 msgstr "نام دسته‌بندی مشتریان در حسابفا را وارد کنید"
 
+
+
+#: admin/partials/ssbhesabfa-admin-setting.php:110
+msgid "Save Customer's group"
+msgstr "ذخیره دسته بندی مشتریان"
+
+
+#: admin/partials/ssbhesabfa-admin-setting.php:110
+msgid "Automatically save Customer's group in hesabfa"
+msgstr "به صورت خودکار دسته بندی مشتریان را در حسابفا ذخیره کن"
+
+
 #: admin/partials/ssbhesabfa-admin-setting.php:144
 msgid "Invoice Settings"
 msgstr "تنظیمات فاکتور"

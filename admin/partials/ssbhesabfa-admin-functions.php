@@ -216,6 +216,7 @@ class Ssbhesabfa_Admin_Functions
     //Invoice
     public function setOrder($id_order, $orderType = 0, $reference = null)
     {
+        HesabfaLogService::writeLogStr("set order function");
         if (!isset($id_order)) {
             return false;
         }
@@ -266,6 +267,7 @@ class Ssbhesabfa_Admin_Functions
         $notDefinedItems = array();
         $products = $order->get_items();
         foreach ($products as $product) {
+            
             if ($product['product_id'] == 0) continue;
             $itemCode = $wpFaService->getProductCodeByWpId($product['product_id'], $product['variation_id']);
             if ($itemCode == null) {
@@ -283,7 +285,7 @@ class Ssbhesabfa_Admin_Functions
         $invoiceItems = array();
         $i = 0;
         $failed = false;
-        foreach ($products as $key => $product) {
+        foreach ($products as $key => $product) {            
             $itemCode = $wpFaService->getProductCodeByWpId($product['product_id'], $product['variation_id']);
 
             if ($itemCode == null) {
@@ -295,13 +297,35 @@ class Ssbhesabfa_Admin_Functions
                 break;
             }
 
+            $unitPrice = (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] / $product['quantity']);
+            $discount = (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] - $product['total']);
+
+            // if option
+            $wc_product = wc_get_product($product['product_id']);
+            $salePrice = $wc_product->get_sale_price();
+            $regularPrice = $wc_product->get_regular_price();
+            // $discountBySalePrice = 
+            $invoice_difference = get_option('ssbhesabfa_add_price_difference_invoice', -1);
+            if ($invoice_difference != -1 && $salePrice && $salePrice != $regularPrice) {
+                if ( $salePrice < $regularPrice )  {
+                    $discount += $regularPrice - $salePrice ;
+                    $unitPrice = $salePrice;
+                }
+            }
+            
+            // HesabfaLogService::writeLogObj("wc_product $wc_product");
+            // HesabfaLogService::writeLogStr("salePrice $salePrice");
+
+            // HesabfaLogService::writeLogStr("discount $discount");
+            // HesabfaLogService::writeLogStr("unitPrice $unitPrice");
+
             $item = array(
                 'RowNumber' => $i,
                 'ItemCode' => $itemCode,
                 'Description' => Ssbhesabfa_Validation::invoiceItemDescriptionValidation($product['name']),
                 'Quantity' => (int)$product['quantity'],
-                'UnitPrice' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] / $product['quantity']),
-                'Discount' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] - $product['total']),
+                'UnitPrice' => $unitPrice,
+                'Discount' => $discount,
                 'Tax' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal_tax']),
             );
 

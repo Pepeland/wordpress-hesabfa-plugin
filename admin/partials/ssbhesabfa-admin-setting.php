@@ -363,6 +363,13 @@ class Ssbhesabfa_Setting
 			'type' => 'select',
 			'options' => $salesmen,
 		);
+		$fields[] = array(
+			'title' => "",
+			'desc' => __('Add the the price difference in Invoice', 'ssbhesabfa'),
+			'id' => 'ssbhesabfa_add_price_difference_invoice',
+			'default' => 'no',
+			'type' => 'checkbox'
+		);
 
 		$fields[] = array('type' => 'sectionend', 'id' => 'invoice_options');
 

@@ -276,7 +276,7 @@ class Ssbhesabfa_Setting
         $fields[] = array(
             'title' => __('Customer\'s detail auto save and update', 'ssbhesabfa'),
             'desc' => __('Save and update Customer\'s detail automatically in hesabfa', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_customer_crud_automatically_in_hesabfa',
+            'id' => 'ssbhesabfa_contact_automatically_save_in_hesabfa',
             'type' => 'checkbox',
             'default' => 'yes'
         );

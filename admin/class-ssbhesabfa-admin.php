@@ -674,7 +674,7 @@ class Ssbhesabfa_Admin
 
         $function = new Ssbhesabfa_Admin_Functions();
 
-       get_option('ssbhesabfa_contact_customer_crud_automatically_in_hesabfa') == 'yes' ? $function->setContact($id_customer) : '' ;
+       get_option('ssbhesabfa_contact_automatically_save_in_hesabfa') == 'yes' ? $function->setContact($id_customer) : '' ;
 
 
     }

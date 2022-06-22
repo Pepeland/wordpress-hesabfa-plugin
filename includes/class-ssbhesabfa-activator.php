@@ -30,7 +30,7 @@ class Ssbhesabfa_Activator {
         add_option('ssbhesabfa_debug_mode', 0);
         add_option('ssbhesabfa_contact_address_status', 1);
         add_option('ssbhesabfa_contact_node_family', 'مشتریان فروشگاه آن‌لاین');
-        add_option('ssbhesabfa_contact_customer_crud_automatically_in_hesabfa', 'yes');
+        add_option('ssbhesabfa_contact_automatically_save_in_hesabfa', 'yes');
         add_option('ssbhesabfa_activation_date', date("Y-m-d"));
         add_option('ssbhesabfa_use_export_product_opening_quantity', false);
         add_option('ssbhesabfa_business_expired', 0);

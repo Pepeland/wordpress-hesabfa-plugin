@@ -273,6 +273,13 @@ class Ssbhesabfa_Setting
 			'default' => 'مشتریان فروشگاه آن‌لاین'
 		);
 
+        $fields[] = array(
+            'title' => __('Customer\'s detail auto save and update', 'ssbhesabfa'),
+            'desc' => __('Save and update Customer\'s detail automatically in hesabfa', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_customer_crud_automatically_in_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes'
+        );
 		$fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
 
 		return $fields;

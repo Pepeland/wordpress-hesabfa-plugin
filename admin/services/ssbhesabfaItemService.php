@@ -16,8 +16,7 @@ class ssbhesabfaItemService
             'PurchasesTitle' => Ssbhesabfa_Validation::itemNameValidation($product->get_title()),
             'SalesTitle' => Ssbhesabfa_Validation::itemNameValidation($product->get_title()),
             'ItemType' => $product->is_virtual() == 1 ? 1 : 0,
-            'Tag' => json_encode(array('id_product' => $id, 'id_attribute' => 0)),
-            'ProductCode' => $id
+            'Tag' => json_encode(array('id_product' => $id, 'id_attribute' => 0))
         );
 
         if(!$code || get_option("ssbhesabfa_do_not_update_product_price_in_hesabfa", "no") === "no")
@@ -26,6 +25,8 @@ class ssbhesabfaItemService
             $hesabfaItem["Barcode"] = Ssbhesabfa_Validation::itemBarcodeValidation($product->get_sku());
 		if(get_option("ssbhesabfa_do_not_update_product_category_in_hesabfa", "no") === "no")
 			$hesabfaItem["NodeFamily"] = self::getCategoryPath($categories[0]);
+        if(get_option("ssbhesabfa_do_not_update_product_product_code_in_hesabfa", "no") === "no")
+            $hesabfaItem["ProductCode"] = $id;
 
 		return $hesabfaItem;
     }
@@ -52,7 +53,6 @@ class ssbhesabfaItemService
                 'id_product' => $id_product,
                 'id_attribute' => $id_attribute
             )),
-            'ProductCode' => $id_attribute
         );
 
         if(!$code || get_option("ssbhesabfa_do_not_update_product_price_in_hesabfa", "no") === "no")
@@ -61,6 +61,8 @@ class ssbhesabfaItemService
             $hesabfaItem["Barcode"] = Ssbhesabfa_Validation::itemBarcodeValidation($variation->get_sku());
 		if(get_option("ssbhesabfa_do_not_update_product_category_in_hesabfa", "no") === "no")
 			$hesabfaItem["NodeFamily"] = self::getCategoryPath($categories[0]);
+        if(get_option("ssbhesabfa_do_not_update_product_product_code_in_hesabfa", "no") === "no")
+            $hesabfaItem["ProductCode"] = $id_attribute;
 
         return $hesabfaItem;
     }

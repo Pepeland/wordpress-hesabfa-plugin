@@ -647,7 +647,9 @@ class Ssbhesabfa_Admin
 
     public function ssbhesabfa_hook_user_register($id_customer)
     {
+
         $user_hesabfa_code = $_REQUEST['user_hesabfa_code'];
+
         if (isset($user_hesabfa_code) && $user_hesabfa_code !== "") {
             $wpFaService = new HesabfaWpFaService();
             $wpFaOld = $wpFaService->getWpFaByHesabfaId('customer', $user_hesabfa_code);
@@ -671,7 +673,10 @@ class Ssbhesabfa_Admin
         }
 
         $function = new Ssbhesabfa_Admin_Functions();
-        $function->setContact($id_customer);
+
+       get_option('ssbhesabfa_contact_customer_crud_automatically_in_hesabfa') == 'yes' ? $function->setContact($id_customer) : '' ;
+
+
     }
 
     public function ssbhesabfa_hook_delete_user($id_customer)

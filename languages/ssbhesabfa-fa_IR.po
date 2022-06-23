@@ -671,6 +671,9 @@ msgstr "با ذخیره محصول در ووکامرس، بارکد محصول �
 msgid "Do not update product category in Hesabfa by saving product in woocommerce"
 msgstr "با ذخیره محصول در ووکامرس، دسته بندی محصول را در حسابفا بروز نکن"
 
+msgid "Do not update product code in Hesabfa by saving product in woocommerce"
+msgstr "با ذخیره محصول در ووکامرس، کد محصول را در حسابفا بروز نکن"
+
 msgid "Shipping method"
 msgstr "روش حمل و نقل"
 

@@ -180,8 +180,6 @@ class Ssbhesabfa_Setting
             'options' => $warehouses,
         );
 
-
-
         $fields[] = array(
 			'title' => "",
 			'desc' => __('Do not submit product in Hesabfa automatically by saving product in woocommerce', 'ssbhesabfa'),
@@ -289,6 +287,13 @@ class Ssbhesabfa_Setting
             'id' => 'ssbhesabfa_contact_automatic_save_node_family',
             'default' => 'yes',
             'type' => 'checkbox'
+        );
+        $fields[] = array(
+            'title' => __('Customer\'s detail auto save and update', 'ssbhesabfa'),
+            'desc' => __('Save and update Customer\'s detail automatically in hesabfa', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_automatically_save_in_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes'
         );
 		$fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
 

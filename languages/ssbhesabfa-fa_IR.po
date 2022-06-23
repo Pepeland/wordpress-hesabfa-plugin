@@ -251,6 +251,17 @@ msgid "Automatically save Customer's group in hesabfa"
 msgstr "به صورت خودکار دسته بندی مشتریان را در حسابفا ذخیره کن"
 
 
+
+#: admin/partials/ssbhesabfa-admin-setting.php:111
+msgid "Customer's detail auto save and update"
+msgstr "ذخیره خودکار مشتریان"
+
+
+#: admin/partials/ssbhesabfa-admin-setting.php:111
+msgid "Save and update Customer's detail automatically in hesabfa"
+msgstr "ثبت و ذخیره خودرکار اطلاعات مشتریان در حسابفا"
+
+
 #: admin/partials/ssbhesabfa-admin-setting.php:144
 msgid "Invoice Settings"
 msgstr "تنظیمات فاکتور"
@@ -659,9 +670,6 @@ msgstr "با ذخیره محصول در ووکامرس، بارکد محصول �
 
 msgid "Do not update product category in Hesabfa by saving product in woocommerce"
 msgstr "با ذخیره محصول در ووکامرس، دسته بندی محصول را در حسابفا بروز نکن"
-
-msgid "Do not update product code in Hesabfa by saving product in woocommerce"
-msgstr "با ذخیره محصول در ووکامرس، کد محصول را در حسابفا بروز نکن"
 
 msgid "Shipping method"
 msgstr "روش حمل و نقل"

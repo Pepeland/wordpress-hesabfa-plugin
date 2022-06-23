@@ -365,8 +365,8 @@ class Ssbhesabfa_Setting
 		);
 		$fields[] = array(
 			'title' => "",
-			'desc' => __('Add the the price difference in Invoice', 'ssbhesabfa'),
-			'id' => 'ssbhesabfa_add_price_difference_invoice',
+			'desc' => __('Set the difference between the sale price and regular price as a discount on the invoice', 'ssbhesabfa'),
+			'id' => 'ssbhesabfa_add_discount_sale_price_invoice',
 			'default' => 'no',
 			'type' => 'checkbox'
 		);

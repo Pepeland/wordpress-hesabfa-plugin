@@ -697,8 +697,8 @@ msgstr "خطا: حداکثر ۱۰ سفارش را انتخاب کنید. بدل�
 msgid "Selected orders invoices have been saved. Number of saved invoices: "
 msgstr "فاکتور سفارش های انتخاب شده ثبت شد. تعداد فاکتور های ثبت شده: "
 
-msgid "Add the the price difference in Invoice: "
-msgstr "اضافه شدن مابه التفاوت قیمت تخفیف به حسابفا اضافه شود: "
+msgid "Set the difference between the sale price and regular price as a discount on the invoice"
+msgstr "ثبت مابه التفاوت قیمت فروش ویژه و قیمت فروش بعنوان تخفیف در فاکتور"
 
 msgid "Update sale price"
 msgstr "بروزرسانی قیمت فروش ویژه"

@@ -270,13 +270,9 @@ msgstr "تنظیمات فاکتور"
 msgid "Add invoice in which status"
 msgstr "افزودن فاکتور در وضعیت:"
 
-#: admin/partials/ssbhesabfa-admin-setting.php:379
-msgid "Invoice draft save"
-msgstr "ثبت پیش نویس فاکتور:"
-
 #: admin/partials/ssbhesabfa-admin-setting.php:380
-msgid "Invoice registration in draft mode in hesabfa"
-msgstr "افزودن ثبت فاکتور در حالت پیش نویس در حسابفا"
+msgid "Save invoice in draft mode in Hesabfa"
+msgstr "ثبت فاکتور بصورت پیش نویس در حسابفا"
 
 #: admin/partials/ssbhesabfa-admin-setting.php:151
 #: admin/partials/ssbhesabfa-admin-setting.php:167

@@ -356,6 +356,10 @@ class Ssbhesabfa_Admin_Functions
             'Note' => $note
         );
 
+        $invoice_draft_save = get_option('ssbhesabfa_invoice_draft_save_in_hesabfa', 'no');
+        if ($invoice_draft_save != 'no')
+            $data['Status'] = 0;
+
         $invoice_project = get_option('ssbhesabfa_invoice_project', -1);
         $invoice_salesman = get_option('ssbhesabfa_invoice_salesman', -1);
         if ($invoice_project != -1)

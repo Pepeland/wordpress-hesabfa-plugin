@@ -375,8 +375,16 @@ class Ssbhesabfa_Setting
 			'type' => 'select',
 			'options' => $salesmen,
 		);
+        $fields[] = array(
+            'title' => __('Invoice draft save', 'ssbhesabfa'),
+            'desc' => __('Invoice registration in draft mode in hesabfa', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_invoice_draft_save_in_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'no'
+        );
 
-		$fields[] = array('type' => 'sectionend', 'id' => 'invoice_options');
+
+        $fields[] = array('type' => 'sectionend', 'id' => 'invoice_options');
 
 		return $fields;
 	}

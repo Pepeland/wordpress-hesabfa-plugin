@@ -134,10 +134,11 @@ class Ssbhesabfa_Validation
         return mb_substr($lastName, 0, 49);
     }
 
-    public static function contactNationalCodeValidation($nationalCode)
+    public static function contactNationalCodeValidation($nationalcode)
     {
-        return mb_substr($nationalCode, 0, 10);
+        return mb_substr(trim($nationalcode), 0, 10);
     }
+
 
     public static function contactEconomicCodeValidation($economicCode)
     {

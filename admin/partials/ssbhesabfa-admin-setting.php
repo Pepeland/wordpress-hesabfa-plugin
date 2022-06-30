@@ -295,7 +295,86 @@ class Ssbhesabfa_Setting
             'type' => 'checkbox',
             'default' => 'yes'
         );
-		$fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
+
+        $fields[] = array(
+            'title' => __('add additional fields to checkout page', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_add_additional_checkout_fields_hesabfa',
+            'type' => 'radio',
+            'options' => array('1' => __('add checkout fields by hesabfa', 'ssbhesabfa'), '2' => __('add checkout fields by using postmeta fields', 'ssbhesabfa')),
+        );
+
+        $fields[] = array(
+            'desc' => __('NationalCode', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_NationalCode_checkbox_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes',
+			'class' => 'contact_checkbox'
+        );
+
+        $fields[] = array(
+            'desc' => __('EconomicCode', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_EconomicCode_checkbox_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes',
+			'class' => 'contact_checkbox'
+        );
+
+        $fields[] = array(
+            'desc' => __('RegistrationNumber', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes',
+			'class' => 'contact_checkbox'
+        );
+
+        $fields[] = array(
+            'desc' => __('Website', 'ssbhesabfa'),
+            'id' => 'ssbhesabfa_contact_Website_checkbox_hesabfa',
+            'type' => 'checkbox',
+            'default' => 'yes',
+			'class' => 'contact_checkbox'
+        );
+
+		$fields[] = array(
+			'id' => 'ssbhesabfa_contact_NationalCode_text_hesabfa',
+			'type' => 'text',
+			'class' => 'contact_text'
+		);
+
+		$fields[] = array(
+			'id' => 'ssbhesabfa_contact_EconomicCode_text_hesabfa',
+			'type' => 'text',
+			'class' => 'contact_text'
+		);
+
+		$fields[] = array(
+			'id' => 'ssbhesabfa_contact_RegistrationNumbertext_hesabfa',
+			'type' => 'text',
+			'class' => 'contact_text'
+		);
+
+		$fields[] = array(
+			'id' => 'ssbhesabfa_contact_Website_text_hesabfa',
+			'type' => 'text',
+			'class' => 'contact_text'
+		);
+
+
+
+        // $fields[] = array(
+        //     'checkbox-id' => 'checkbox_id',
+        //     'checkbox-title' => 'checkbox title',
+        //     'checkbox-default' => 'yes',
+        //     'input-id' => 'input_id',
+        //     'input-class' => 'input_class',
+        //     'input-default' => 'ncode',
+        //     'type' => 'combined'
+        // );
+
+
+
+
+        $fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
 
 		return $fields;
 	}

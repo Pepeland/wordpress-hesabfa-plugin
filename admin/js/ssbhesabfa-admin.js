@@ -2,6 +2,7 @@ jQuery(function ($) {
     $('.progress').hide();
 
     'use strict';
+
     $(function () {
         // AJAX - Export Products
         $('#ssbhesabfa_export_products').submit(function () {
@@ -767,8 +768,25 @@ jQuery(function ($) {
                 }
             });
         });
+
+
     });
 
+    $(function (){
+        let radio = $('input:radio[name="ssbhesabfa_contact_add_additional_checkout_fields_hesabfa"]');
+        $('.contact_text').hide();
+        
+        $(radio).change(function(){
+          
+            $('.contact_text').hide();
+            if($(this).val() == '2'){
+                $('.contact_text').show();
+            }
+            
+        
+
+        });
+    });
 });
 
 function hesabfaTutorialJumpTo(time) {

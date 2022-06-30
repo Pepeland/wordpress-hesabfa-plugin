@@ -132,7 +132,7 @@ class Ssbhesabfa_Admin_Functions
         }
     }
 
-    public function setContact($id_customer, $type = 'first')
+    public function setContact($id_customer, $id_order, $type = 'first')
     {
         if (!isset($id_customer)) {
             return false;
@@ -140,7 +140,7 @@ class Ssbhesabfa_Admin_Functions
 
         $code = $this->getContactCodeByCustomerId($id_customer);
 
-        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $type);
+        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $id_order, $type);
 
         $hesabfa = new Ssbhesabfa_Api();
         $response = $hesabfa->contactSave($hesabfaCustomer);
@@ -240,7 +240,7 @@ class Ssbhesabfa_Admin_Functions
 
             // set customer if not exists
             if ($contactCode == null) {
-                $contactCode = $this->setContact($id_customer, 'first');
+                $contactCode = $this->setContact($id_customer, $id_order, 'first');
 
                 if (!$contactCode) {
                     // return false if cannot set customer
@@ -249,9 +249,9 @@ class Ssbhesabfa_Admin_Functions
             }
 
             if (get_option('ssbhesabfa_contact_address_status') == 2) {
-                $this->setContact($id_customer, 'billing');
+                $this->setContact($id_customer, $id_order, 'billing');
             } elseif (get_option('ssbhesabfa_contact_address_status') == 3) {
-                $this->setContact($id_customer, 'shipping');
+                $this->setContact($id_customer, $id_order, 'shipping');
             }
         } else {
             // set guest customer

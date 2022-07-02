@@ -237,13 +237,10 @@ class Ssbhesabfa_Admin_Functions
 	    $id_customer = $order->get_customer_id();
 	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);
 	    if ($id_customer !== 0) {
+			// update contact
 		    $contactCode = $this->setContact($id_customer, 'first',$id_order);
-		    //set registered customer
-//		    $contactCode = $this->getContactCodeByCustomerId($id_customer);
-
 		    // set customer if not exists
 		    if ($contactCode == null) {
-
 			    if (!$contactCode) {
 				    // return false if cannot set customer
 				    return false;

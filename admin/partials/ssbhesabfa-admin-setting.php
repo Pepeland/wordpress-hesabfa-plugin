@@ -376,8 +376,19 @@ class Ssbhesabfa_Setting
 	public static function ssbhesabfa_customers_setting_save_field()
 	{
 		$ssbhesabf_setting_fields = self::ssbhesabfa_customers_setting_fields();
+
+		// get additional checkout fields from post form
+        HesabfaLogService::writeLogStr("========== customer settings save =============");
+        HesabfaLogService::writeLogStr($_POST['nationalCodeCheck']);
+        HesabfaLogService::writeLogStr($_POST['nationalCode']);
+
+        $nationalCodeCheck = wc_clean($_POST['nationalCodeCheck']);
+        // ...
+
 		$Html_output = new Ssbhesabfa_Html_output();
 		$Html_output->save_fields($ssbhesabf_setting_fields);
+		update_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa', $nationalCodeCheck);
+		// ....
 	}
 
 

@@ -296,84 +296,6 @@ class Ssbhesabfa_Setting
             'default' => 'yes'
         );
 
-        $fields[] = array(
-            'title' => __('add additional fields to checkout page', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_add_additional_checkout_fields_hesabfa',
-            'type' => 'radio',
-            'options' => array('1' => __('add checkout fields by hesabfa', 'ssbhesabfa'), '2' => __('add checkout fields by using postmeta fields', 'ssbhesabfa')),
-        );
-
-        $fields[] = array(
-            'desc' => __('NationalCode', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_NationalCode_checkbox_hesabfa',
-            'type' => 'checkbox',
-            'default' => 'yes',
-			'class' => 'contact_checkbox'
-        );
-
-        $fields[] = array(
-            'desc' => __('EconomicCode', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_EconomicCode_checkbox_hesabfa',
-            'type' => 'checkbox',
-            'default' => 'yes',
-			'class' => 'contact_checkbox'
-        );
-
-        $fields[] = array(
-            'desc' => __('RegistrationNumber', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa',
-            'type' => 'checkbox',
-            'default' => 'yes',
-			'class' => 'contact_checkbox'
-        );
-
-        $fields[] = array(
-            'desc' => __('Website', 'ssbhesabfa'),
-            'id' => 'ssbhesabfa_contact_Website_checkbox_hesabfa',
-            'type' => 'checkbox',
-            'default' => 'yes',
-			'class' => 'contact_checkbox'
-        );
-
-		$fields[] = array(
-			'id' => 'ssbhesabfa_contact_NationalCode_text_hesabfa',
-			'type' => 'text',
-			'class' => 'contact_text'
-		);
-
-		$fields[] = array(
-			'id' => 'ssbhesabfa_contact_EconomicCode_text_hesabfa',
-			'type' => 'text',
-			'class' => 'contact_text'
-		);
-
-		$fields[] = array(
-			'id' => 'ssbhesabfa_contact_RegistrationNumber_text_hesabfa',
-			'type' => 'text',
-			'class' => 'contact_text'
-		);
-
-		$fields[] = array(
-			'id' => 'ssbhesabfa_contact_Website_text_hesabfa',
-			'type' => 'text',
-			'class' => 'contact_text'
-		);
-
-
-
-        // $fields[] = array(
-        //     'checkbox-id' => 'checkbox_id',
-        //     'checkbox-title' => 'checkbox title',
-        //     'checkbox-default' => 'yes',
-        //     'input-id' => 'input_id',
-        //     'input-class' => 'input_class',
-        //     'input-default' => 'ncode',
-        //     'type' => 'combined'
-        // );
-
-
-
-
         $fields[] = array('type' => 'sectionend', 'id' => 'customer_options');
 
 		return $fields;
@@ -382,10 +304,67 @@ class Ssbhesabfa_Setting
 	public static function ssbhesabfa_customers_setting()
 	{
 		$ssbhesabf_setting_fields = self::ssbhesabfa_customers_setting_fields();
-		$Html_output = new Ssbhesabfa_Html_output();
+
+		$nationalCodeCheck = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa', 'no') == 'yes';
+        $economicCodeCheck = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa', 'no') == 'yes';
+        $registrationNumberCheck = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa', 'no') == 'yes';
+        $websiteCheck = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa', 'no') == 'yes';
+
+        $nationalCodeMetaName = get_option('ssbhesabfa_contact_NationalCode_text_hesabfa', null);
+        $economicCodeMetaName = get_option('ssbhesabfa_contact_EconomicCode_text_hesabfa', null);
+        $registrationNumberMetaName = get_option('ssbhesabfa_contact_RegistrationNumber_text_hesabfa', null);
+        $websiteMetaName = get_option('ssbhesabfa_contact_Website_text_hesabfa', null);
+
+        $Html_output = new Ssbhesabfa_Html_output();
 		?>
         <form id="ssbhesabfa_form" enctype="multipart/form-data" action="" method="post">
 			<?php $Html_output->init($ssbhesabf_setting_fields); ?>
+
+            <label class="hesabfa-p mt-3" style="font-weight: bold"><?php echo __('Add additional fields to checkout page', 'ssbhesabfa') ?></label>
+            <div class="col-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Add fields by Hesabfa
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Use post meta fields from other plugins
+                    </label>
+                </div>
+            </div>
+
+            <table class="table table-light mt-3">
+                <thead>
+                <tr>
+                    <th class="col-1">نمایش</th>
+                    <th class="col-2">نام فیلد</th>
+                    <th class="col-9">نام فیلد در جدول متا</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td><input type="checkbox" name="nationalCodeCheck" checked="<?php echo $nationalCodeCheck ? 'checked' : '' ?>"></td>
+                    <td><?php echo __('National code', 'ssbhesabfa')?></td>
+                    <td><input type="text" name="nationalCode" value="<?php echo $nationalCodeMetaName ?>"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="economicCodeCheck" checked="<?php echo $economicCodeCheck ? 'checked' : '' ?>"></td>
+                    <td><?php echo __('Economic code', 'ssbhesabfa')?></td>
+                    <td><input type="text" name="economicCode" value="<?php echo $economicCodeMetaName ?>"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="registrationNumberCheck" checked="<?php echo $registrationNumberCheck ? 'checked' : '' ?>"></td>
+                    <td><?php echo __('Registration number', 'ssbhesabfa')?></td>
+                    <td><input type="text" name="registrationNumber" value="<?php echo $registrationNumberMetaName ?>"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="websiteCheck" checked="<?php echo $websiteCheck ? 'checked' : '' ?>"></td>
+                    <td><?php echo __('Website', 'ssbhesabfa')?></td>
+                    <td><input type="text" name="website" value="<?php echo $websiteMetaName ?>"></td>
+                </tr>
+            </table>
             <p class="submit hesabfa-p">
                 <input type="submit" name="ssbhesabfa_integration" class="button-primary"
                        value="<?php esc_attr_e('Save changes', 'ssbhesabfa'); ?>"/>

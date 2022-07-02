@@ -348,7 +348,7 @@ class Ssbhesabfa_Setting
 		);
 
 		$fields[] = array(
-			'id' => 'ssbhesabfa_contact_RegistrationNumbertext_hesabfa',
+			'id' => 'ssbhesabfa_contact_RegistrationNumber_text_hesabfa',
 			'type' => 'text',
 			'class' => 'contact_text'
 		);

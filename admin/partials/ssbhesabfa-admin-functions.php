@@ -994,16 +994,15 @@ class Ssbhesabfa_Admin_Functions
 
             $hesabfa = new Ssbhesabfa_Api();
             $filters = array(array("Property" => "ItemType", "Operator" => "=", "Value" => 0));
-            $rpp = 500;
+            $rpp = 200;
 
             if ($batch == 1) {
-                $total = 0;
                 $response = $hesabfa->itemGetItems(array('Take' => 1, 'Filters' => $filters));
                 if ($response->Success) {
                     $total = $response->Result->FilteredCount;
                     $totalBatch = ceil($total / $rpp);
                 } else {
-                    HesabfaLogService::log(array("Error while trying to get products for sync. Error Message: (string)$response->ErrorMessage. Error Code: (string)$response->ErrorCode."));
+                    HesabfaLogService::log(array("Error while trying to get products for sync. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode."));
                     $result["error"] = true;
                     return $result;
                 }
@@ -1028,7 +1027,7 @@ class Ssbhesabfa_Admin_Functions
                     self::setItemChanges($product);
                 }
             } else {
-                HesabfaLogService::log(array("Error while trying to get products for sync. Error Message: (string)$response->ErrorMessage. Error Code: (string)$response->ErrorCode."));
+                HesabfaLogService::log(array("Error while trying to get products for sync. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode."));
                 $result["error"] = true;
                 return $result;
             }

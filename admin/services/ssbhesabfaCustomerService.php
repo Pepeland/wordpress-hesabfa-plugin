@@ -6,7 +6,7 @@ class ssbhesabfaCustomerService
     public static $countries;
     public static $states;
 
-    public static function mapCustomer($code, $id_customer, $type = 'first'): array
+    public static function mapCustomer($code, $id_customer, $type = 'first',$id_order = ''): array
     {
         self::getCountriesAndStates();
 
@@ -14,7 +14,14 @@ class ssbhesabfaCustomerService
         $firstName = $customer->get_first_name() ? $customer->get_first_name() : $customer->get_billing_first_name();
         $lastName = $customer->get_last_name() ? $customer->get_last_name() : $customer->get_billing_last_name();
         $name = $firstName . ' ' . $lastName;
-        $nodeFamily = get_option('ssbhesabfa_contact_automatic_save_node_family') == 'yes'? 'اشخاص :' . get_option('ssbhesabfa_contact_node_family') :null;
+        $nodeFamily = get_option('ssbhesabfa_contact_automatic_save_node_family') == 'yes'? 'اشخاص :' . get_option('ssbhesabfa_contact_node_family') : null;
+
+		//checkout fields
+	    $checkout_fields = ssbhesabfaCustomerService::getAdditionalCheckoutFileds($id_order);
+	    $NationalCode = $checkout_fields['NationalCode'];
+	    $EconomicCode = $checkout_fields['EconomicCode'];
+	    $RegistrationNumber = $checkout_fields['RegistrationNumber'];
+	    $Website = $checkout_fields['Website'];
 
         if (empty($name) || $name === ' ')
             $name = __('Not Defined', 'ssbhesabfa');
@@ -34,6 +41,10 @@ class ssbhesabfaCustomerService
                     'LastName' => Ssbhesabfa_Validation::contactLastNameValidation($lastName),
                     'ContactType' => 1,
                     'NodeFamily' => $nodeFamily,
+                    'NationalCode' => $NationalCode,
+                    'EconomicCode' => $EconomicCode,
+                    'RegistrationNumber' => $RegistrationNumber,
+                    'Website' => $Website,
                     'Address' => Ssbhesabfa_Validation::contactAddressValidation($customer->get_billing_address_1() . ' ' . $customer->get_billing_address_2()),
                     'City' => Ssbhesabfa_Validation::contactCityValidation($customer->get_billing_city()),
                     'State' => Ssbhesabfa_Validation::contactStateValidation($state_name),
@@ -56,6 +67,10 @@ class ssbhesabfaCustomerService
                     'LastName' => Ssbhesabfa_Validation::contactLastNameValidation($lastName),
                     'ContactType' => 1,
                     'NodeFamily' => $nodeFamily,
+                    'NationalCode' => $NationalCode,
+                    'EconomicCode' => $EconomicCode,
+                    'RegistrationNumber' => $RegistrationNumber,
+                    'Website' => $Website,
                     'Address' => Ssbhesabfa_Validation::contactAddressValidation($customer->get_shipping_address()),
                     'City' => Ssbhesabfa_Validation::contactCityValidation($customer->get_shipping_city()),
                     'State' => Ssbhesabfa_Validation::contactStateValidation($state_name),
@@ -68,13 +83,6 @@ class ssbhesabfaCustomerService
                 );
                 break;
         }
-//		$additionalFields =  self::getAdditionalCheckoutFileds($id_order);
-//		HesabfaLogService::writeLogObj($additionalFields);
-        // $hesabfaCustomer['NationalCode'] = $additionalFields['NationalCode'] ?? null;
-        // $hesabfaCustomer['EconomicCode'] = $additionalFields['EconomicCode'] ?? null;
-        // $hesabfaCustomer['RegistrationNumber'] = $additionalFields['RegistrationNumber'] ?? null;
-        // $hesabfaCustomer['Website'] = $additionalFields['Website'] ?? null;
-        // // ...
 
         return self::correctCustomerData($hesabfaCustomer);
     }
@@ -83,12 +91,19 @@ class ssbhesabfaCustomerService
     {
         $order = new WC_Order($id_order);
 
+
         $name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
         if (empty($order->get_billing_first_name()) && empty($order->get_billing_last_name())) {
             $name = __('Guest Customer', 'ssbhesabfa');
         }
         $nodeFamily = get_option('ssbhesabfa_contact_automatic_save_node_family') == 'yes'? 'اشخاص :' . get_option('ssbhesabfa_contact_node_family') :null;
 
+		//checkout fields
+	    $checkout_fields = ssbhesabfaCustomerService::getAdditionalCheckoutFileds($id_order);
+	    $NationalCode = $checkout_fields['NationalCode'];
+	    $EconomicCode = $checkout_fields['EconomicCode'];
+	    $RegistrationNumber = $checkout_fields['RegistrationNumber'];
+	    $Website = $checkout_fields['Website'];
 
         $country_name = self::$countries[$order->get_billing_country()];
         $state_name = self::$states[$order->get_billing_country()][$order->get_billing_state()];
@@ -99,6 +114,10 @@ class ssbhesabfaCustomerService
             'FirstName' => Ssbhesabfa_Validation::contactFirstNameValidation($order->get_billing_first_name()),
             'LastName' => Ssbhesabfa_Validation::contactLastNameValidation($order->get_billing_last_name()),
             'ContactType' => 1,
+			'NationalCode' => $NationalCode,
+			'EconomicCode' => $EconomicCode,
+			'RegistrationNumber' => $RegistrationNumber,
+			'Website' => $Website,
             'NodeFamily' => $nodeFamily,
             'Address' => Ssbhesabfa_Validation::contactAddressValidation($order->get_billing_address_1() . ' ' . $order->get_billing_address_2()),
             'City' => Ssbhesabfa_Validation::contactCityValidation($order->get_billing_city()),
@@ -156,35 +175,27 @@ class ssbhesabfaCustomerService
         }
     }
 
-    private static function getNationalCode(){
-
-    }
-
     private static function getAdditionalCheckoutFileds($id_order) {
+
         $NationalCode = '_billing_hesabfa_nationalcode';
         $EconomicCode = '_billing_hesabfa_economiccode';
         $RegistrationNumber = '_billing_hesabfa_registerationnumber';
         $Website = '_billing_hesabfa_website';
-
-        $fields = array();
-
-        HesabfaLogService::writeLogStr(get_post_meta( $id_order,'_billing_hesabfa_nationalcode'));
-
-
-        $NationalCode_isActive = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa');
-        $EconomicCode_isAactive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
-        $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
-        $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
+	    $NationalCode_isActive = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa');
+	    $EconomicCode_isActive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
+	    $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
+	    $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
 	    $add_additional_fileds = get_option('ssbhesabfa_contact_add_additional_checkout_fields_hesabfa');
-        
-        // add additional fileds to chechout
+	    $fields = array();
+
+	    // add additional fields to checkout
         if($add_additional_fileds == '1'){
             // add fileds form by hesabfa
-            
-            $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode) ?? null;
-            $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode) ?? null;
-            $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber) ?? null;
-            $fields['Website'] = get_post_meta( $id_order,$Website) ?? null;
+
+            $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode,true) ?? null;
+            $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode,true) ?? null;
+            $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber,true) ?? null;
+            $fields['Website'] = get_post_meta( $id_order,$Website,true) ?? null;
 
 
         }elseif($add_additional_fileds == '2'){
@@ -193,22 +204,24 @@ class ssbhesabfaCustomerService
             $EconomicCode = get_option('ssbhesabfa_contact_EconomicCode_text_hesabfa');
             $RegistrationNumber = get_option('ssbhesabfa_contact_RegistrationNumber_text_hesabfa');
             $Website = get_option('ssbhesabfa_contact_Website_text_hesabfa');
-            
-            if($NationalCode_isActive == 'yes')
-                $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode) ?? null;
-            
-            if($EconomicCode_isActive == 'yes')
-                $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode) ?? null;
-            
-            if($RegistrationNumber_isActive == 'yes')
-            $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber) ?? null;
 
-          
-            $fields['Website'] = get_post_meta( $id_order,$Website) ?? null;
+            if($NationalCode_isActive == 'yes')
+                $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode,true) ?? null;
+
+            if($EconomicCode_isActive == 'yes')
+                $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode,true) ?? null;
+
+            if($RegistrationNumber_isActive == 'yes')
+                $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber,true) ?? null;
+
+	        if($Website_isActive == 'yes')
+		        $fields['Website'] = get_post_meta( $id_order,$Website,true) ?? null;
+
+
         }
 
-        // get postmeta fields 
-        
+        // get postmeta fields
+
         return $fields;
 
     

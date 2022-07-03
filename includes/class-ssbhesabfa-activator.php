@@ -37,7 +37,7 @@ class Ssbhesabfa_Activator {
         add_option('ssbhesabfa_business_expired', 0);
         add_option('ssbhesabfa_do_not_submit_product_automatically', "no");
         add_option('ssbhesabfa_do_not_update_product_price_in_hesabfa', "no");
-        add_option('ssbhesabfa_contact_add_additional_checkout_fields_hesabfa', null);
+        add_option('ssbhesabfa_contact_add_additional_checkout_fields_hesabfa', 1);
 
         self::ssbhesabfa_create_database_table();
 	}

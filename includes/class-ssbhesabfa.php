@@ -185,7 +185,11 @@ class Ssbhesabfa
 					$this->loader->add_filter('woocommerce_checkout_fields', $plugin_admin, 'add_additional_fields_to_checkout', 10, 3);
 
 
-                //Runs when a new order added.
+				// show checkout additional fields in order detail
+	            if(get_option('ssbhesabfa_contact_add_additional_checkout_fields_hesabfa') == 1)
+	                $this->loader->add_action('woocommerce_admin_order_data_after_billing_address', $plugin_admin, 'show_additional_fields_in_order_detail', 10, 3);
+
+	            //Runs when a new order added.
                 $this->loader->add_action('woocommerce_order_status_changed', $plugin_admin, 'ssbhesabfa_hook_order_status_change', 10, 3);
 
                 //Runs when an order paid.

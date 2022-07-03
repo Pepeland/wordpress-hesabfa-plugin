@@ -773,19 +773,24 @@ jQuery(function ($) {
     });
 
     $(function (){
-        let radio = $('input:radio[name="ssbhesabfa_contact_add_additional_checkout_fields_hesabfa"]');
-        $('.contact_text').hide();
-        
-        $(radio).change(function(){
-          
-            $('.contact_text').hide();
-            if($(this).val() == '2'){
-                $('.contact_text').show();
-            }
-            
-        
 
+        let radio           = $('input:radio[name="addFieldsRadio"]');
+        let radioChecked    = $('input:radio[name="addFieldsRadio"]:checked');
+        let textInput       = $('.contact_text_input');
+
+        if(radioChecked.val() === '2'){
+            textInput.prop( "disabled", false );
+        }else {
+            textInput.prop( "disabled", true );
+        }
+        $(radio).on('click',function (){
+            if($(this).val() === '2'){
+                textInput.prop( "disabled", false );
+            }else {
+                textInput.prop( "disabled", true );
+            }
         });
+
     });
 });
 

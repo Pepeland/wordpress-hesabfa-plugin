@@ -372,9 +372,9 @@ class Ssbhesabfa_Setting {
                     <table class="table table-light mt-4 ">
                         <thead>
                             <tr>
-                                <th class="col-1  hesabfa-p"><?php echo __( 'Customer add field table Show', 'ssbhesabfa' ) ?></th>
-                                <th class="col-1  hesabfa-p"><?php echo __( 'Customer add field table Tilte', 'ssbhesabfa' ) ?></th>
-                                <th class="col-4  hesabfa-p" ><?php echo __( 'Customer add field table Tilte in Postmeta', 'ssbhesabfa' ) ?></th>
+                                <th class="col-1  hesabfa-p"><?php echo __( 'Show', 'ssbhesabfa' ) ?></th>
+                                <th class="col-1  hesabfa-p"><?php echo __( 'Title', 'ssbhesabfa' ) ?></th>
+                                <th class="col-4  hesabfa-p" ><?php echo __( 'Meta code in Postmeta', 'ssbhesabfa' ) ?></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -1328,20 +1328,16 @@ class Ssbhesabfa_Admin
     }
 
     function add_additional_fields_to_checkout( $fields ) {
-
-
         // check if checkbox is checked
         $NationalCode_isActive = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa');
         $EconomicCode_isActive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
         $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
         $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
-
-
         // add fields
 	    if($NationalCode_isActive == 'yes'){
 		    $fields['billing']['billing_hesabfa_nationalcode'] = array(
-               'label'     => __('Customer NationalCode', 'ssbhesabfa'),
-               'placeholder'   => __('please enter your NationalCode', 'ssbhesabfa'),
+               'label'     => __('National code', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your National code', 'ssbhesabfa'),
                'priority' => 30,
                'required'  => true,
                'clear'     => true
@@ -1349,8 +1345,8 @@ class Ssbhesabfa_Admin
 	    }
 	    if($EconomicCode_isActive == 'yes'){
 		    $fields['billing']['billing_hesabfa_economiccode'] = array(
-               'label'     => __('Customer EconomicCode', 'ssbhesabfa'),
-               'placeholder'   => __('please enter your EconomicCode', 'ssbhesabfa'),
+               'label'     => __('Economic code', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Economic code', 'ssbhesabfa'),
                'priority' => 31,
                'required'  => true,
                'clear'     => true
@@ -1358,8 +1354,8 @@ class Ssbhesabfa_Admin
 	    }
 	    if($RegistrationNumber_isActive == 'yes'){
 		    $fields['billing']['billing_hesabfa_registerationnumber'] = array(
-               'label'     => __('Customer RegistrationNumber', 'ssbhesabfa'),
-               'placeholder'   => __('please enter your RegistrationNumber', 'ssbhesabfa'),
+               'label'     => __('Registration number', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Registration number', 'ssbhesabfa'),
                'priority' => 32,
                'required'  => true,
                'clear'     => true
@@ -1367,8 +1363,8 @@ class Ssbhesabfa_Admin
 	    }
 	    if($Website_isActive == 'yes'){
 		    $fields['billing']['billing_hesabfa_website'] = array(
-               'label'     => __('Customer Website', 'ssbhesabfa'),
-               'placeholder'   => __('please enter your Website', 'ssbhesabfa'),
+               'label'     => __('Website', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Website address', 'ssbhesabfa'),
                'priority' => 33,
                'required'  => true,
                'clear'     => true

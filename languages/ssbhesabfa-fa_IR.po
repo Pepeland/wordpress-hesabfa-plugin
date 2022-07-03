@@ -273,17 +273,17 @@ msgid "Customer add field to checkout by postmeta"
 msgstr "استفاده از فیلد های موجود در جدول متا (که توسط اافزونه های دیگر اضافه شده است)"
 
 
-msgid "Customer add field table Show"
+msgid "Show"
 msgstr "نمایش"
 
-msgid "Customer add field table Tilte"
+msgid "Title"
 msgstr "عنوان"
 
-msgid "Customer add field table Tilte in Postmeta"
+msgid "Meta code in Postmeta"
 msgstr "کد متا در جدول پست متا"
 
 msgid "National code"
-msgstr "کد ملی "
+msgstr "کد ملی"
 
 msgid "Economic code"
 msgstr "کد اقتصادی"
@@ -294,6 +294,17 @@ msgstr "شماره ثبت"
 msgid "Website"
 msgstr "وب سایت"
 
+msgid "please enter your National code"
+msgstr "لطفا کد ملی خود را وارد کتید"
+
+msgid "please enter your Economic code"
+msgstr "لطفا کد اقتصادی خود را وارد کتید"
+
+msgid "please enter your Registration number"
+msgstr "لطفا شماره ثبت خود را وارد کتید"
+
+msgid "please enter your Website address"
+msgstr "لطفا آدرس سایت خود را وارد کتید"
 #: admin/partials/ssbhesabfa-admin-setting.php:144
 msgid "Invoice Settings"
 msgstr "تنظیمات فاکتور"

@@ -326,7 +326,7 @@ class Ssbhesabfa_Setting {
 
 		$ssbhesabf_setting_fields   = self::ssbhesabfa_customers_setting_fields();
 
-		$add_fields                 = get_option( 'ssbhesabfa_contact_add_additional_checkout_fields_hesabfa', null );
+		$add_fields                 = get_option( 'ssbhesabfa_contact_add_additional_checkout_fields_hesabfa', 1 );
 		$nationalCodeCheck          = get_option( 'ssbhesabfa_contact_NationalCode_checkbox_hesabfa' ) == 'yes';
 		$economicCodeCheck          = get_option( 'ssbhesabfa_contact_EconomicCode_checkbox_hesabfa' ) == 'yes';
 		$registrationNumberCheck    = get_option( 'ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa') == 'yes';

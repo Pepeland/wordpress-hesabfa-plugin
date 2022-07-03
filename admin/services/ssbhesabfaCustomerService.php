@@ -176,7 +176,6 @@ class ssbhesabfaCustomerService
     }
 
     private static function getAdditionalCheckoutFileds($id_order) {
-
         $NationalCode = '_billing_hesabfa_nationalcode';
         $EconomicCode = '_billing_hesabfa_economiccode';
         $RegistrationNumber = '_billing_hesabfa_registerationnumber';
@@ -189,15 +188,12 @@ class ssbhesabfaCustomerService
 	    $fields = array();
 
 	    // add additional fields to checkout
-        if($add_additional_fileds == '1'){
+        if($add_additional_fileds == '1') {
             // add fileds form by hesabfa
-
             $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode,true) ?? null;
             $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode,true) ?? null;
             $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber,true) ?? null;
             $fields['Website'] = get_post_meta( $id_order,$Website,true) ?? null;
-
-
         }elseif($add_additional_fileds == '2'){
             // add fields by other ways and get met
             $NationalCode = get_option('ssbhesabfa_contact_NationalCode_text_hesabfa');
@@ -205,25 +201,19 @@ class ssbhesabfaCustomerService
             $RegistrationNumber = get_option('ssbhesabfa_contact_RegistrationNumber_text_hesabfa');
             $Website = get_option('ssbhesabfa_contact_Website_text_hesabfa');
 
-            if($NationalCode_isActive == 'yes')
-                $fields['NationalCode'] = get_post_meta( $id_order,$NationalCode,true) ?? null;
+            if($NationalCode_isActive == 'yes' && $NationalCode)
+                $fields['NationalCode'] = get_post_meta( $id_order, $NationalCode,true) ?? null;
 
-            if($EconomicCode_isActive == 'yes')
-                $fields['EconomicCode'] = get_post_meta( $id_order,$EconomicCode,true) ?? null;
+            if($EconomicCode_isActive == 'yes' && $EconomicCode)
+                $fields['EconomicCode'] = get_post_meta( $id_order, $EconomicCode,true) ?? null;
 
-            if($RegistrationNumber_isActive == 'yes')
-                $fields['RegistrationNumber'] = get_post_meta( $id_order,$RegistrationNumber,true) ?? null;
+            if($RegistrationNumber_isActive == 'yes' && $RegistrationNumber)
+                $fields['RegistrationNumber'] = get_post_meta( $id_order, $RegistrationNumber,true) ?? null;
 
-	        if($Website_isActive == 'yes')
+	        if($Website_isActive == 'yes' && $Website)
 		        $fields['Website'] = get_post_meta( $id_order,$Website,true) ?? null;
-
-
         }
 
-        // get postmeta fields
-
         return $fields;
-
-    
     }
 }

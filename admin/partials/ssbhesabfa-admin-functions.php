@@ -134,10 +134,8 @@ class Ssbhesabfa_Admin_Functions
 
     public function setContact($id_customer, $type = 'first',$id_order = '')
     {
-
-        if (!isset($id_customer)) {
+        if (!isset($id_customer))
             return false;
-        }
 
         $code = $this->getContactCodeByCustomerId($id_customer);
 

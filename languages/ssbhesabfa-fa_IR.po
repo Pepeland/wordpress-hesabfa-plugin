@@ -261,7 +261,50 @@ msgstr "ذخیره خودکار مشتریان"
 msgid "Save and update Customer's detail automatically in hesabfa"
 msgstr "ثبت و ذخیره خودرکار اطلاعات مشتریان در حسابفا"
 
+msgid "Add additional fields to checkout page"
+msgstr "افزودن فیلد های دلخواه به صفحه پرداخت"
 
+
+msgid "Customer add field to checkout by hesabfa"
+msgstr "افزودن فیلد ها توسط افزونه حسابفا"
+
+
+msgid "Customer add field to checkout by postmeta"
+msgstr "استفاده از فیلد های موجود در جدول متا (که توسط اافزونه های دیگر اضافه شده است)"
+
+
+msgid "Show"
+msgstr "نمایش"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Meta code in Postmeta"
+msgstr "کد متا در جدول پست متا"
+
+msgid "National code"
+msgstr "کد ملی"
+
+msgid "Economic code"
+msgstr "کد اقتصادی"
+
+msgid "Registration number"
+msgstr "شماره ثبت"
+
+msgid "Website"
+msgstr "وب سایت"
+
+msgid "please enter your National code"
+msgstr "لطفا کد ملی خود را وارد کتید"
+
+msgid "please enter your Economic code"
+msgstr "لطفا کد اقتصادی خود را وارد کتید"
+
+msgid "please enter your Registration number"
+msgstr "لطفا شماره ثبت خود را وارد کتید"
+
+msgid "please enter your Website address"
+msgstr "لطفا آدرس سایت خود را وارد کتید"
 #: admin/partials/ssbhesabfa-admin-setting.php:144
 msgid "Invoice Settings"
 msgstr "تنظیمات فاکتور"

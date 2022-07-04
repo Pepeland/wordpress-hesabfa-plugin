@@ -132,15 +132,14 @@ class Ssbhesabfa_Admin_Functions
         }
     }
 
-    public function setContact($id_customer, $type = 'first')
+    public function setContact($id_customer, $type = 'first',$id_order = '')
     {
-        if (!isset($id_customer)) {
+        if (!isset($id_customer))
             return false;
-        }
 
         $code = $this->getContactCodeByCustomerId($id_customer);
 
-        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $type);
+        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $type,$id_order);
 
         $hesabfa = new Ssbhesabfa_Api();
         $response = $hesabfa->contactSave($hesabfaCustomer);
@@ -233,25 +232,24 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-        $id_customer = $order->get_customer_id();
-        if ($id_customer !== 0) {
-            //set registered customer
-            $contactCode = $this->getContactCodeByCustomerId($id_customer);
+	    $id_customer = $order->get_customer_id();
+	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);
+	    if ($id_customer !== 0) {
+			// update contact
+		    $contactCode = $this->setContact($id_customer, 'first',$id_order);
+		    // set customer if not exists
+		    if ($contactCode == null) {
+			    if (!$contactCode) {
+				    // return false if cannot set customer
+				    return false;
+			    }
+		    }
 
-            // set customer if not exists
-            if ($contactCode == null) {
-                $contactCode = $this->setContact($id_customer, 'first');
-
-                if (!$contactCode) {
-                    // return false if cannot set customer
-                    return false;
-                }
-            }
-
-            if (get_option('ssbhesabfa_contact_address_status') == 2) {
-                $this->setContact($id_customer, 'billing');
-            } elseif (get_option('ssbhesabfa_contact_address_status') == 3) {
-                $this->setContact($id_customer, 'shipping');
+		    HesabfaLogService::writeLogStr("order ID ".$id_order);
+		    if (get_option('ssbhesabfa_contact_address_status') == 2) {
+			    $this->setContact($id_customer, 'billing',$id_order);
+		    } elseif (get_option('ssbhesabfa_contact_address_status') == 3) {
+			    $this->setContact($id_customer, 'shipping',$id_order);
             }
         } else {
             // set guest customer

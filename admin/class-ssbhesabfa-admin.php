@@ -1327,4 +1327,80 @@ class Ssbhesabfa_Admin
         }
     }
 
+    function add_additional_fields_to_checkout( $fields ) {
+        // check if checkbox is checked
+        $NationalCode_isActive = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa');
+        $EconomicCode_isActive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
+        $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
+        $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
+        // add fields
+	    if($NationalCode_isActive == 'yes'){
+		    $fields['billing']['billing_hesabfa_nationalcode'] = array(
+               'label'     => __('National code', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your National code', 'ssbhesabfa'),
+               'priority' => 30,
+               'required'  => true,
+               'clear'     => true
+               );
+	    }
+	    if($EconomicCode_isActive == 'yes'){
+		    $fields['billing']['billing_hesabfa_economiccode'] = array(
+               'label'     => __('Economic code', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Economic code', 'ssbhesabfa'),
+               'priority' => 31,
+               'required'  => true,
+               'clear'     => true
+               );
+	    }
+	    if($RegistrationNumber_isActive == 'yes'){
+		    $fields['billing']['billing_hesabfa_registerationnumber'] = array(
+               'label'     => __('Registration number', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Registration number', 'ssbhesabfa'),
+               'priority' => 32,
+               'required'  => true,
+               'clear'     => true
+               );
+	    }
+	    if($Website_isActive == 'yes'){
+		    $fields['billing']['billing_hesabfa_website'] = array(
+               'label'     => __('Website', 'ssbhesabfa'),
+               'placeholder'   => __('please enter your Website address', 'ssbhesabfa'),
+               'priority' => 33,
+               'required'  => true,
+               'clear'     => true
+               );
+	    }
+
+	    return $fields;
+    }
+
+    function show_additional_fields_in_order_detail($order) {
+
+        $orderId = $order->get_id();
+	    $NationalCode = '_billing_hesabfa_nationalcode';
+	    $EconomicCode = '_billing_hesabfa_economiccode';
+	    $RegistrationNumber = '_billing_hesabfa_registerationnumber';
+	    $Website = '_billing_hesabfa_website';
+
+	    $NationalCode_isActive = get_option('ssbhesabfa_contact_NationalCode_checkbox_hesabfa');
+	    $EconomicCode_isActive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
+	    $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
+	    $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
+
+	    if($NationalCode_isActive == 'yes')
+		    echo '<p><strong>' . __('National code', 'ssbhesabfa')  . ': </strong> ' .'<br>'. '<strong>' . get_post_meta( $orderId, $NationalCode, true ) . '</strong></p>';
+
+	    if($EconomicCode_isActive == 'yes')
+		    echo '<p><strong>' . __('Economic code', 'ssbhesabfa')  . ': </strong> ' .'<br>'. '<strong>' . get_post_meta( $orderId, $EconomicCode, true ) . '</strong></p>';
+
+	    if($RegistrationNumber_isActive == 'yes')
+		    echo '<p><strong>' . __('Registration number', 'ssbhesabfa')  . ': </strong> ' .'<br>'. '<strong>' . get_post_meta( $orderId, $RegistrationNumber, true ) . '</strong></p>';
+
+	    if($Website_isActive == 'yes')
+		    echo '<p><strong>' . __('Website', 'ssbhesabfa')  . ': </strong> ' .'<br>'. '<a target="_blank" href="https://'.get_post_meta( $orderId, $Website, true ) .'">' . get_post_meta( $orderId, $Website, true ) . '</a></p>';
+
+
+    }
+
+
 }

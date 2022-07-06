@@ -331,6 +331,12 @@ class Ssbhesabfa_Setting {
 		$economicCodeCheck          = get_option( 'ssbhesabfa_contact_EconomicCode_checkbox_hesabfa' ) == 'yes';
 		$registrationNumberCheck    = get_option( 'ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa') == 'yes';
 		$websiteCheck               = get_option( 'ssbhesabfa_contact_Website_checkbox_hesabfa') == 'yes';
+
+		$nationalCodeRequired          = get_option( 'ssbhesabfa_contact_NationalCode_isRequired_hesabfa' ) == 'yes';
+		$economicCodeRequired          = get_option( 'ssbhesabfa_contact_EconomicCode_isRequired_hesabfa' ) == 'yes';
+		$registrationNumberRequired    = get_option( 'ssbhesabfa_contact_RegistrationNumber_isRequired_hesabfa') == 'yes';
+		$websiteRequired               = get_option( 'ssbhesabfa_contact_Website_isRequired_hesabfa') == 'yes';
+
 		$nationalCodeMetaName       = get_option( 'ssbhesabfa_contact_NationalCode_text_hesabfa', null ) ;
 		$economicCodeMetaName       = get_option( 'ssbhesabfa_contact_EconomicCode_text_hesabfa', null ) ;
 		$registrationNumberMetaName = get_option( 'ssbhesabfa_contact_RegistrationNumber_text_hesabfa', null );
@@ -373,6 +379,7 @@ class Ssbhesabfa_Setting {
                         <thead>
                             <tr>
                                 <th class="col-1  hesabfa-p"><?php echo __( 'Show', 'ssbhesabfa' ) ?></th>
+                                <th class="col-1  hesabfa-p"><?php echo __( 'Required', 'ssbhesabfa' ) ?></th>
                                 <th class="col-1  hesabfa-p"><?php echo __( 'Title', 'ssbhesabfa' ) ?></th>
                                 <th class="col-4  hesabfa-p" ><?php echo __( 'Meta code in Postmeta', 'ssbhesabfa' ) ?></th>
                             </tr>
@@ -381,6 +388,8 @@ class Ssbhesabfa_Setting {
                             <tr>
                                 <td><input type="checkbox" name="nationalCodeCheck" id="nationalCodeCheck"
                                            <?php echo $nationalCodeCheck ? 'checked' : '' ?> class="form-control"  value="yes"></td>
+                                <td><input type="checkbox" name="nationalCodeRequired" id="nationalCodeRequired"
+			                            <?php echo $nationalCodeRequired ? 'checked' : '' ?> class="form-control"  value="yes"></td>
                                 <td><span class="hesabfa-p"><?php echo __( 'National code', 'ssbhesabfa' ) ?></span></td>
                                 <td><input type="text" name="nationalCode" id="nationalCode"
                                            value="<?php echo $nationalCodeMetaName ?>" class="contact_text_input form-control"></td>
@@ -388,6 +397,8 @@ class Ssbhesabfa_Setting {
                             <tr>
                                 <td><input type="checkbox" name="economicCodeCheck" id="economicCodeCheck"
                                            <?php echo $economicCodeCheck ? 'checked' : '' ?> class="form-control" value="yes"></td>
+                                <td><input type="checkbox" name="economicCodeRequired" id="economicCodeRequired"
+			                            <?php echo $economicCodeRequired ? 'checked' : '' ?> class="form-control"  value="yes"></td>
                                 <td><span class="hesabfa-p"><?php echo __( 'Economic code', 'ssbhesabfa' ) ?></span></td>
                                 <td><input type="text" name="economicCode" id="economicCode"
                                            value="<?php echo $economicCodeMetaName ?>" class="contact_text_input form-control"></td>
@@ -395,6 +406,8 @@ class Ssbhesabfa_Setting {
                             <tr>
                                 <td><input type="checkbox" name="registrationNumberCheck" id="registrationNumberCheck"
                                            <?php echo $registrationNumberCheck ? 'checked' : '' ?> class="form-control"  value="yes"></td>
+                                <td><input type="checkbox" name="registrationNumberRequired" id="registrationNumberRequired"
+			                            <?php echo $registrationNumberRequired ? 'checked' : '' ?> class="form-control"  value="yes"></td>
                                 <td><span class="hesabfa-p"><?php echo __( 'Registration number', 'ssbhesabfa' ) ?></span></td>
                                 <td><input type="text" name="registrationNumber" id="registrationNumber"
                                            value="<?php echo $registrationNumberMetaName ?>" class="contact_text_input form-control"></td>
@@ -402,6 +415,8 @@ class Ssbhesabfa_Setting {
                             <tr>
                                 <td><input type="checkbox" name="websiteCheck" id="websiteCheck"
                                            <?php echo $websiteCheck ? 'checked' : '' ?> class="form-control"  value="yes"></td>
+                                <td><input type="checkbox" name="websiteRequired" id="websiteRequired"
+			                            <?php echo $websiteRequired ? 'checked' : '' ?> class="form-control"  value="yes"></td>
                                 <td><span><?php echo __( 'Website', 'ssbhesabfa' ) ?></span></td>
                                 <td><input type="text" name="website" id="website" value="<?php echo $websiteMetaName ?>"
                                            class="contact_text_input form-control"></td>
@@ -434,6 +449,11 @@ class Ssbhesabfa_Setting {
 			$economicCodeCheck          = wc_clean( $_POST['economicCodeCheck'] );
 			$registrationNumberCheck    = wc_clean( $_POST['registrationNumberCheck'] );
 			$websiteCheck               = wc_clean( $_POST['websiteCheck'] );
+			// get checkboxes
+			$nationalCodeRequired          = wc_clean( $_POST['nationalCodeRequired'] );
+			$economicCodeRequired          = wc_clean( $_POST['economicCodeRequired'] );
+			$registrationNumberRequired    = wc_clean( $_POST['registrationNumberRequired'] );
+			$websiteRequired               = wc_clean( $_POST['websiteRequired'] );
 			// get text inputs
 			$nationalCode          = wc_clean( $_POST['nationalCode'] );
 			$economicCode          = wc_clean( $_POST['economicCode'] );
@@ -446,6 +466,11 @@ class Ssbhesabfa_Setting {
 			update_option( 'ssbhesabfa_contact_EconomicCode_checkbox_hesabfa', $economicCodeCheck );
 			update_option( 'ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa', $registrationNumberCheck );
 			update_option( 'ssbhesabfa_contact_Website_checkbox_hesabfa', $websiteCheck );
+			// save checkbox options
+			update_option( 'ssbhesabfa_contact_NationalCode_isRequired_hesabfa', $nationalCodeRequired );
+			update_option( 'ssbhesabfa_contact_EconomicCode_isRequired_hesabfa', $economicCodeRequired );
+			update_option( 'ssbhesabfa_contact_RegistrationNumber_isRequired_hesabfa', $registrationNumberRequired );
+			update_option( 'ssbhesabfa_contact_Website_isRequired_hesabfa', $websiteRequired );
 			// save text inputs options
 			update_option( 'ssbhesabfa_contact_NationalCode_text_hesabfa', $nationalCode );
 			update_option( 'ssbhesabfa_contact_EconomicCode_text_hesabfa', $economicCode );

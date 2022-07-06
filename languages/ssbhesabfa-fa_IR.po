@@ -294,6 +294,9 @@ msgstr "شماره ثبت"
 msgid "Website"
 msgstr "وب سایت"
 
+msgid "Required"
+msgstr "اجباری"
+
 msgid "please enter your National code"
 msgstr "لطفا کد ملی خود را وارد کتید"
 

@@ -1333,13 +1333,20 @@ class Ssbhesabfa_Admin
         $EconomicCode_isActive = get_option('ssbhesabfa_contact_EconomicCode_checkbox_hesabfa');
         $RegistrationNumber_isActive = get_option('ssbhesabfa_contact_RegistrationNumber_checkbox_hesabfa');
         $Website_isActive = get_option('ssbhesabfa_contact_Website_checkbox_hesabfa');
+
+        // check if field is required
+	    $NationalCode_isRequired = get_option('ssbhesabfa_contact_NationalCode_isRequired_hesabfa');
+	    $EconomicCode_isRequired = get_option('ssbhesabfa_contact_EconomicCode_isRequired_hesabfa');
+	    $RegistrationNumber_isRequired = get_option('ssbhesabfa_contact_RegistrationNumber_isRequired_hesabfa');
+	    $Website_isRequired = get_option('ssbhesabfa_contact_Website_isRequired_hesabfa');
+
         // add fields
 	    if($NationalCode_isActive == 'yes'){
 		    $fields['billing']['billing_hesabfa_nationalcode'] = array(
                'label'     => __('National code', 'ssbhesabfa'),
                'placeholder'   => __('please enter your National code', 'ssbhesabfa'),
                'priority' => 30,
-               'required'  => true,
+               'required'  => (bool) $NationalCode_isRequired,
                'clear'     => true
                );
 	    }
@@ -1348,7 +1355,7 @@ class Ssbhesabfa_Admin
                'label'     => __('Economic code', 'ssbhesabfa'),
                'placeholder'   => __('please enter your Economic code', 'ssbhesabfa'),
                'priority' => 31,
-               'required'  => true,
+               'required'  => (bool) $EconomicCode_isRequired,
                'clear'     => true
                );
 	    }
@@ -1357,7 +1364,7 @@ class Ssbhesabfa_Admin
                'label'     => __('Registration number', 'ssbhesabfa'),
                'placeholder'   => __('please enter your Registration number', 'ssbhesabfa'),
                'priority' => 32,
-               'required'  => true,
+               'required'  => (bool) $RegistrationNumber_isRequired,
                'clear'     => true
                );
 	    }
@@ -1366,7 +1373,7 @@ class Ssbhesabfa_Admin
                'label'     => __('Website', 'ssbhesabfa'),
                'placeholder'   => __('please enter your Website address', 'ssbhesabfa'),
                'priority' => 33,
-               'required'  => true,
+               'required'  => (bool) $Website_isRequired,
                'clear'     => true
                );
 	    }

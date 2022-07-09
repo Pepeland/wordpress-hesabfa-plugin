@@ -219,7 +219,6 @@ class Ssbhesabfa_Admin_Functions
         if (!isset($id_order))
             return false;
 
-
         $wpFaService = new HesabfaWpFaService();
 
         $number = $this->getInvoiceNumberByOrderId($id_order);
@@ -233,9 +232,9 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-        HesabfaLogService::writeLogStr($order->get_created_via());
-//        if ($order->get_created_via() !== 'checkout')
-//            return false;
+//        HesabfaLogService::writeLogStr($order->get_created_via());
+        if ($order->get_created_via() !== 'checkout')
+            return false;
 
         $id_customer = $order->get_customer_id();
 	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);

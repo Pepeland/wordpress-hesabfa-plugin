@@ -34,6 +34,13 @@ class Ssbhesabfa_Webhook
                 if (!$item->API) {
                     switch ($item->ObjectType) {
                         case 'Invoice':
+                            if ($item->Action == 123) {
+                                $wpFa1 = $wpFaService->getWpFaByHesabfaId('order', $item->Extra2);
+                                if($wpFa1) {
+                                    $wpFaService->delete($wpFa1);
+                                    HesabfaLogService::writeLogStr("The invoice link with the order deleted. Invoice number: " . $item->Extra2 . ", Order id: " . $wpFa1->idWp);
+                                }
+                            }
                             $this->invoicesObjectId[] = $item->ObjectId;
                             foreach (explode(',', $item->Extra) as $invoiceItem) {
                                 if ($invoiceItem != '') {

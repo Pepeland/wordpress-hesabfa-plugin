@@ -234,8 +234,8 @@ class Ssbhesabfa_Admin_Functions
         $order = new WC_Order($id_order);
 
         HesabfaLogService::writeLogStr($order->get_created_via());
-        if ($order->get_created_via() !== 'checkout')
-            return false;
+//        if ($order->get_created_via() !== 'checkout')
+//            return false;
 
         $id_customer = $order->get_customer_id();
 	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);

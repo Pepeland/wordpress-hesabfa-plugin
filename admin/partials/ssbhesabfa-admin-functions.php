@@ -160,6 +160,7 @@ class Ssbhesabfa_Admin_Functions
             return false;
 
         $order = new WC_Order($id_order);
+
         $contactCode = $this->getContactCodeByPhoneOrEmail($order->get_billing_phone(), $order->get_billing_email());
 
         $hesabfaCustomer = ssbhesabfaCustomerService::mapGuestCustomer($contactCode, $id_order);
@@ -215,9 +216,8 @@ class Ssbhesabfa_Admin_Functions
     //Invoice
     public function setOrder($id_order, $orderType = 0, $reference = null)
     {
-        if (!isset($id_order)) {
+        if (!isset($id_order))
             return false;
-        }
 
         $wpFaService = new HesabfaWpFaService();
 
@@ -232,7 +232,10 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-	    $id_customer = $order->get_customer_id();
+        if ($order->get_created_via() !== 'checkout')
+            return false;
+
+        $id_customer = $order->get_customer_id();
 	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);
 	    if ($id_customer !== 0) {
 			// update contact

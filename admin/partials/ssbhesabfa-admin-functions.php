@@ -232,7 +232,6 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-//        HesabfaLogService::writeLogStr($order->get_created_via());
         if ($order->get_created_via() !== 'checkout')
             return false;
 

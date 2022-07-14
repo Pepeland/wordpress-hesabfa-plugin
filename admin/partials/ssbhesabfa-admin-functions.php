@@ -132,14 +132,14 @@ class Ssbhesabfa_Admin_Functions
         }
     }
 
-    public function setContact($id_customer, $type = 'first',$id_order = '')
+    public function setContact($id_customer, $type = 'first', $id_order = '')
     {
         if (!isset($id_customer))
             return false;
 
         $code = $this->getContactCodeByCustomerId($id_customer);
 
-        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $type,$id_order);
+        $hesabfaCustomer = ssbhesabfaCustomerService::mapCustomer($code, $id_customer, $type, $id_order);
 
         $hesabfa = new Ssbhesabfa_Api();
         $response = $hesabfa->contactSave($hesabfaCustomer);
@@ -160,7 +160,6 @@ class Ssbhesabfa_Admin_Functions
             return false;
 
         $order = new WC_Order($id_order);
-
         $contactCode = $this->getContactCodeByPhoneOrEmail($order->get_billing_phone(), $order->get_billing_email());
 
         $hesabfaCustomer = ssbhesabfaCustomerService::mapGuestCustomer($contactCode, $id_order);
@@ -216,8 +215,9 @@ class Ssbhesabfa_Admin_Functions
     //Invoice
     public function setOrder($id_order, $orderType = 0, $reference = null)
     {
-        if (!isset($id_order))
+        if (!isset($id_order)) {
             return false;
+        }
 
         $wpFaService = new HesabfaWpFaService();
 
@@ -232,27 +232,32 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-        if ($order->get_created_via() !== 'checkout')
-            return false;
+        if (is_plugin_active("dokan-lite/dokan.php")) {
+            $dokanOption = get_option("ssbhesabfa_invoice_dokan", 1);
+            $orderCreated = $order->get_created_via();
+            if ($dokanOption == 1 && $orderCreated !== 'checkout')
+                return false;
+            else if ($dokanOption == 2 && $orderCreated === 'checkout')
+                return false;
+        }
 
         $id_customer = $order->get_customer_id();
-	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);
-	    if ($id_customer !== 0) {
-			// update contact
-		    $contactCode = $this->setContact($id_customer, 'first',$id_order);
-		    // set customer if not exists
-		    if ($contactCode == null) {
-			    if (!$contactCode) {
-				    // return false if cannot set customer
-				    return false;
-			    }
-		    }
+        if ($id_customer !== 0) {
+            // update contact
+            $contactCode = $this->setContact($id_customer, 'first', $id_order);
+            // set customer if not exists
+            if ($contactCode == null) {
+                if (!$contactCode) {
+                    // return false if cannot set customer
+                    return false;
+                }
+            }
 
-		    HesabfaLogService::writeLogStr("order ID ".$id_order);
-		    if (get_option('ssbhesabfa_contact_address_status') == 2) {
-			    $this->setContact($id_customer, 'billing',$id_order);
-		    } elseif (get_option('ssbhesabfa_contact_address_status') == 3) {
-			    $this->setContact($id_customer, 'shipping',$id_order);
+            HesabfaLogService::writeLogStr("order ID " . $id_order);
+            if (get_option('ssbhesabfa_contact_address_status') == 2) {
+                $this->setContact($id_customer, 'billing', $id_order);
+            } elseif (get_option('ssbhesabfa_contact_address_status') == 3) {
+                $this->setContact($id_customer, 'shipping', $id_order);
             }
         } else {
             // set guest customer

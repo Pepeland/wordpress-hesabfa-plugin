@@ -549,7 +549,15 @@ class Ssbhesabfa_Setting {
             'type' => 'checkbox',
             'default' => 'no'
         );
-
+        if(is_plugin_active( "dokan-lite/dokan.php" )){
+            $fields[] = array(
+                'title'   => __( "Submit invoice base on Dokan orders", 'ssbhesabfa' ),
+                'id'      => 'ssbhesabfa_invoice_dokan',
+                'type'    => 'radio',
+                'options' => [1 => __( "Submit parent order", 'ssbhesabfa' ),2 =>  __( "Submit children orders", 'ssbhesabfa' )],
+                'default' => 1
+            );
+        }
 
 		$fields[] = array('type' => 'sectionend', 'id' => 'invoice_options');
 

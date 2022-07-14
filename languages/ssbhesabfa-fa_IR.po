@@ -782,6 +782,15 @@ msgstr "قیمت فروش ویژه حذف گردد"
 msgid "The sale price get changes in proportion to the regular price"
 msgstr "قیمت فروش ویژه به تناسب قیمت اصلی تغییر یابد"
 
+msgid "Submit invoice base on Dokan orders"
+msgstr "ثبت فاکتور بر اساس سفارشات افزونه دکان"
+
+msgid "Submit parent order"
+msgstr "ثبت سفارش مادر"
+
+msgid "Submit children orders"
+msgstr "ثبت زیر سفارش ها"
+
 #~ msgid "Sync completed, All products added/updated."
 #~ msgstr "همسان‌سازی پایان یافت. تمامی محصولات به‌روزرسانی/افزوده شدند."
 

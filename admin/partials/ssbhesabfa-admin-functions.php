@@ -231,7 +231,14 @@ class Ssbhesabfa_Admin_Functions
         }
 
         $order = new WC_Order($id_order);
-
+        if (is_plugin_active( "dokan-lite/dokan.php" ))
+        {
+            HesabfaLogService::writeLogStr($order->get_created_via());
+            if(get_option("ssbhesabfa_invoice_dokan") === 1){
+                if ($order->get_created_via() !== 'checkout')
+                    return false;
+            }
+        }
 	    $id_customer = $order->get_customer_id();
 	    HesabfaLogService::writeLogStr("CUSTOMER ID ".$id_customer);
 	    if ($id_customer !== 0) {

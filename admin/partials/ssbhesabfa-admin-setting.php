@@ -549,6 +549,14 @@ class Ssbhesabfa_Setting {
             'type' => 'checkbox',
             'default' => 'no'
         );
+        if(is_plugin_active( "dokan-lite/dokan.php" )){
+            $fields[] = array(
+                'title'   => __( "Invoice's Dokan option ", 'ssbhesabfa' ),
+                'id'      => 'ssbhesabfa_invoice_dokan',
+                'type'    => 'radio',
+                'options' => [1 => __( "submit parent invoice checkout in dokan", 'ssbhesabfa' ),2 =>  __( "submit children invoice checkout in dokan", 'ssbhesabfa' )],
+            );
+        }
 
 
 		$fields[] = array('type' => 'sectionend', 'id' => 'invoice_options');

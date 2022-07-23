@@ -316,6 +316,3 @@ by clicking update stock and price button in hesabfa tab in product edit page
 * fix bug: remove Invoice-Order link by deleting invoice from Hesabfa
 * adding an option to add additional fields to checkout page for customer
 * adding an option for Dokan plugin to able user to select which orders save into Hesabfa
-
-== Upgrade Notice ==
-Automatic updates should work smoothly, but we still recommend you back up your site.

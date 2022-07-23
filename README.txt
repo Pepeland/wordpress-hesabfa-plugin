@@ -4,7 +4,7 @@ Tags: accounting cloud hesabfa
 Requires at least: 5.2
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 1.93.59
+Stable tag: 2.0.60
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -307,6 +307,15 @@ by clicking update stock and price button in hesabfa tab in product edit page
 
 = 1.93.59 - 15.06.2022 =
 * Fix bug: updating new prices from Hesabfa for varieties.
+
+= 2.0.60 - 23.07.2022 =
+* adding an option in settings to able user to select whether plugin changes product code in Hesabfa or not
+* adding an option in settings to able user to select whether plugin changes contact category in Hesabfa or not
+* adding an option in settings to able user to select whether plugin saves contact automatically in Hesabfa or not
+* adding an option in settings to able user to select whether plugin saves invoice as draft in Hesabfa or not
+* fix bug: remove Invoice-Order link by deleting invoice from Hesabfa
+* adding an option to add additional fields to checkout page for customer
+* adding an option for Dokan plugin to able user to select which orders save into Hesabfa
 
 == Upgrade Notice ==
 Automatic updates should work smoothly, but we still recommend you back up your site.

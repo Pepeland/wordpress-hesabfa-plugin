@@ -10,7 +10,7 @@
  * version of the plugin.
  *
  * @class      Ssbhesabfa
- * @version    1.93.59
+ * @version    2.0.60
  * @since      1.0.0
  * @package    ssbhesabfa
  * @subpackage ssbhesabfa/includes
@@ -63,7 +63,7 @@ class Ssbhesabfa
         if (defined('SSBHESABFA_VERSION')) {
             $this->version = SSBHESABFA_VERSION;
         } else {
-            $this->version = '1.93.59';
+            $this->version = '2.0.60';
         }
         $this->plugin_name = 'ssbhesabfa';
 

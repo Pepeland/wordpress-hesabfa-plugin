@@ -2,7 +2,7 @@
 
 /*
  * @class      Ssbhesabfa_Validation
- * @version    2.0.60
+ * @version    2.0.61
  * @since      1.1.5
  * @package    ssbhesabfa
  * @subpackage ssbhesabfa/includes

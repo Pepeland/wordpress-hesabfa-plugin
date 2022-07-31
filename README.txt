@@ -4,7 +4,7 @@ Tags: accounting cloud hesabfa
 Requires at least: 5.2
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 2.0.60
+Stable tag: 2.0.61
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -316,3 +316,6 @@ by clicking update stock and price button in hesabfa tab in product edit page
 * fix bug: remove Invoice-Order link by deleting invoice from Hesabfa
 * adding an option to add additional fields to checkout page for customer
 * adding an option for Dokan plugin to able user to select which orders save into Hesabfa
+
+= 2.0.61 - 31.07.2022 =
+* adding an option to inactive options related to Dokan plugin

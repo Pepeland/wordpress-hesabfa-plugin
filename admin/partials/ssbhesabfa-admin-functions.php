@@ -232,8 +232,9 @@ class Ssbhesabfa_Admin_Functions
 
         $order = new WC_Order($id_order);
 
-        if (is_plugin_active("dokan-lite/dokan.php")) {
-            $dokanOption = get_option("ssbhesabfa_invoice_dokan", 1);
+        $dokanOption = get_option("ssbhesabfa_invoice_dokan", 0);
+
+        if ($dokanOption && is_plugin_active("dokan-lite/dokan.php")) {
             $orderCreated = $order->get_created_via();
             if ($dokanOption == 1 && $orderCreated !== 'checkout')
                 return false;

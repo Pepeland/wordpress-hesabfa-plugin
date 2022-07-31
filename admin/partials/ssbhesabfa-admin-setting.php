@@ -554,8 +554,10 @@ class Ssbhesabfa_Setting {
                 'title'   => __( "Submit invoice base on Dokan orders", 'ssbhesabfa' ),
                 'id'      => 'ssbhesabfa_invoice_dokan',
                 'type'    => 'radio',
-                'options' => [1 => __( "Submit parent order", 'ssbhesabfa' ),2 =>  __( "Submit children orders", 'ssbhesabfa' )],
-                'default' => 1
+                'options' => [0 => __( "Inactive", 'ssbhesabfa' ),
+                    1 => __( "Submit parent order", 'ssbhesabfa' ),
+                    2 =>  __( "Submit children orders", 'ssbhesabfa' )],
+                'default' => 0
             );
         }
 

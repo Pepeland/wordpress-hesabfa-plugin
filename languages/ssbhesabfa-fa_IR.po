@@ -791,6 +791,9 @@ msgstr "ثبت سفارش مادر"
 msgid "Submit children orders"
 msgstr "ثبت زیر سفارش ها"
 
+msgid "Inactive"
+msgstr "غیر فعال"
+
 #~ msgid "Sync completed, All products added/updated."
 #~ msgstr "همسان‌سازی پایان یافت. تمامی محصولات به‌روزرسانی/افزوده شدند."
 

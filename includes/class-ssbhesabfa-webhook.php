@@ -112,26 +112,6 @@ class Ssbhesabfa_Webhook
 
     public function setChanges()
     {
-        //Invoices
-        if (!empty($this->invoicesObjectId)) {
-            $invoices = $this->getObjectsByIdList($this->invoicesObjectId, 'invoice');
-            if ($invoices != false) {
-                foreach ($invoices as $invoice) {
-                    $this->setInvoiceChanges($invoice);
-                }
-            }
-        }
-
-        //Contacts
-//        if (!empty($this->contactsObjectId)) {
-//            $contacts = $this->getObjectsByIdList(array_unique($this->contactsObjectId), 'contact');
-//            if ($contacts != false) {
-//                foreach ($contacts as $contact) {
-//                    $this->setContactChanges($contact);
-//                }
-//            }
-//        }
-
         //Items
         $items = array();
 
@@ -271,7 +251,7 @@ class Ssbhesabfa_Webhook
                 $result = $hesabfaApi->contactGetById($idList);
                 break;
             case 'invoice':
-                $result = $hesabfaApi->invoiceGetByIdList($idList);
+                $result = $hesabfaApi->invoiceGetInvoices(array("Filters" => array("Property" => "Id", "Operator" => "in", "Value" => $idList)));
                 break;
             case 'WarehouseReceipt':
                 $result = $hesabfaApi->warehouseReceiptGetByIdList($idList);

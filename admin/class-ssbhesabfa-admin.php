@@ -91,10 +91,11 @@ class Ssbhesabfa_Admin
          * between the defined hooks and the functions defined in this
          * class.
          */
-
-        wp_enqueue_style('fontiran_css', plugin_dir_url(__FILE__) . 'css/fontiran.css', array(), $this->version, 'all');
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/ssbhesabfa-admin.css?v=1', array(), $this->version, 'all');
-        wp_enqueue_style('bootstrap_css', plugin_dir_url(__FILE__) . 'css/bootstrap.css', array(), $this->version, 'all');
+        if( isset($_GET['page']) && str_contains($_GET['page'], "hesabfa") ){
+            wp_enqueue_style('fontiran_css', plugin_dir_url(__FILE__) . 'css/fontiran.css', array(), $this->version, 'all');
+            wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/ssbhesabfa-admin.css?v=1', array(), $this->version, 'all');
+            wp_enqueue_style('bootstrap_css', plugin_dir_url(__FILE__) . 'css/bootstrap.css', array(), $this->version, 'all');
+        }
     }
 
     /**
@@ -117,7 +118,8 @@ class Ssbhesabfa_Admin
          */
 
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/ssbhesabfa-admin.js', array('jquery'), $this->version, false);
-        wp_enqueue_script('bootstrap_js', plugin_dir_url(__FILE__) . 'js/bootstrap.bundle.min.js', array('jquery'), $this->version, false);
+        if( isset($_GET['page']) && str_contains($_GET['page'], "hesabfa") )
+            wp_enqueue_script('bootstrap_js', plugin_dir_url(__FILE__) . 'js/bootstrap.bundle.min.js', array('jquery'), $this->version, false);
     }
 
     private function load_dependencies()

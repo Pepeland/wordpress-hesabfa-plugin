@@ -309,7 +309,7 @@ class Ssbhesabfa_Admin_Functions
                 'Quantity' => (int)$product['quantity'],
                 'UnitPrice' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] / $product['quantity']),
                 'Discount' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal'] - $product['total']),
-                'Tax' => (float)$this->getPriceInHesabfaDefaultCurrency($product['subtotal_tax']),
+                'Tax' => (float)$this->getPriceInHesabfaDefaultCurrency($product['total_tax']),
             );
 
             array_push($invoiceItems, $item);

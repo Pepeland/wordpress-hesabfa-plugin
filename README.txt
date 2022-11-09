@@ -4,7 +4,7 @@ Tags: accounting cloud hesabfa
 Requires at least: 5.2
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 2.0.61
+Stable tag: 2.0.63
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -319,3 +319,7 @@ by clicking update stock and price button in hesabfa tab in product edit page
 
 = 2.0.61 - 31.07.2022 =
 * adding an option to inactive options related to Dokan plugin
+
+= 2.0.63 - 23.10.2022 =
+* ux improvement: install plugin fonts only in plugin settings page.
+* bug fix: There is no need to update the invoice number, And this method caused an internal error in the Hesabfa.

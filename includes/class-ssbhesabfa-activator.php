@@ -6,7 +6,7 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @class      Ssbhesabfa_Activator
- * @version    2.0.63
+ * @version    2.0.64
  * @since      1.0.0
  * @package    ssbhesabfa
  * @subpackage ssbhesabfa/includes
